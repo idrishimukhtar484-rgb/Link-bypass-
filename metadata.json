@@ -1,0 +1,6 @@
+{
+  "name": "LinkPulse - Ultimate Link Shortener",
+  "description": "A professional-grade link shortener with detailed analytics and a modern dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

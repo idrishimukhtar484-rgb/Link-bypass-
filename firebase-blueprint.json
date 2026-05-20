@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile information and totals",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Global unique ID" },
+        "email": { "type": "string", "description": "User email" },
+        "totalClicks": { "type": "number", "description": "Total clicks across all links" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Link": {
+      "title": "Shortened Link",
+      "description": "Information about a shortened URL",
+      "type": "object",
+      "properties": {
+        "originalUrl": { "type": "string", "description": "Target URL" },
+        "shortId": { "type": "string", "description": "Unique slug for redirection" },
+        "userId": { "type": "string", "description": "Owner ID" },
+        "clicks": { "type": "number", "description": "Total click count" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "label": { "type": "string", "description": "Optional label for the link" }
+      },
+      "required": ["originalUrl", "shortId", "userId", "clicks"]
+    },
+    "Click": {
+      "title": "Click Event",
+      "description": "Detailed log of an individual click",
+      "type": "object",
+      "properties": {
+        "linkId": { "type": "string", "description": "Reference to the link" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "country": { "type": "string", "description": "Detected country" },
+        "device": { "type": "string", "description": "Device type or user agent" }
+      },
+      "required": ["linkId", "timestamp"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "links/{linkId}": {
+      "schema": "Link",
+      "description": "Shortened links"
+    },
+    "links/{linkId}/clicks/{clickId}": {
+      "schema": "Click",
+      "description": "Click statistics for a link"
+    }
+  }
+}
